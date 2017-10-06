@@ -10,7 +10,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">-->
+  <link rel="stylesheet" href="font/font-awesome/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
   <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
@@ -68,25 +69,43 @@
       <div class="col-sm-3">
         <h3>Universidad Veracruzana</h3>
         <a href="">
-                    <img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" >
+                    <img src="images/LIS-UV-COLOR.jpg" height="100px" alt="Logo_UV" style="float:left;" >
                 </a>
       </div>
-      <div class="col-sm-9 text-justified">
-        <h3 style="text-align: left;">Justificación</h3>
-		<p style="text-align: justify;">La <strong>Línea de Generación y Aplicación del Conocimiento (LGAC)</strong>
-		sobre "Datos, Predicción y Servicios Climáticos" del Programa Educativo  de la Licenciatura en Ciencias Atmosféricas
-		de la Universidad Veracruzana, realiza actividades orientadas a mejorar el monitoreo, la disponibilidad  y la calidad
-		de los datos climáticos, en línea con el <strong>Plan Estratégico Nacional de REDESClim.</strong>.</p>
+      <div class="col-sm-8 text-justified">
+        <h3 style="text-align: center;">Aspectos conceptuales, metodológicos y de diseño para la implementación de Sistemas de Manejo de Datos Climáticos 				(CDMSs) en México con ejemplos de un estudio de caso.</h3>
+        <p style="text-align: center;">Jorge Luis Vázquez Aguirre*, Ciencias Atmosféricas, Universidad Veracruzana<br>Martín José Montero Martínez*, 					Instituto Mexicano de Tecnología del Agua<br>Guillermo García Grijalva, Instituto Consorcio Clavijero<br>Salvador Castillo Liñán, Instituto 					Mexicano de Tecnología del Agua</p>
+        
+      <p style="text-align: justify;">El concepto de <strong>Sistemas de Manejo de Datos Climáticos (CDMS por sus siglas en inglés) </strong>
+			ha sido constantemente actualizado por grupos de expertos internacionales a través de la <b>Organización Meteorológica Mundial (OMM)</b>.  El caso 			más conocido de CDMS es el sistema <b>CLIma COMputarizado (CLICOM)</b>, desarrollado en 1985 por el Programa Mundial de Datos y Vigilancia del 				Clima e implementado en más de 100 Servicios Meteorológicos e Hidrológicos Nacionales, sistema en uso actualmente para la base de datos
+			climatológica nacional de la República Mexicana.</p>
+      <p style="text-align: justify;">
+	      La rápida evolución en ciencias de la computación y la necesidad de información en línea (histórica y de tiempo real), ha derivado en desarrollos y
+	      plataformas de accesibilidad de la información para las comunidades de investigación y de gestión del riesgo en México <b>(CLICOM-CICESE)</b>. 
+	      En tanto, la comunidad internacional ha continuado el desarrollo de CDMSs posteriores a CLICOM con base en las guías de la OMM (sistemas MCH, 
+	      CLISYS, ADAM, MESSIRCLIM, entre otros).  La prevención y gestión de riesgos requieren datos oficiales, confiables y disponibles, más para la toma 
+	      de decisiones en el manejo de recursos (agua, bosques, agricultura, energía, salud, etc) varios sectores han desarrollado sus propios sistemas de 
+	      información (por ejemplo el SIH en el caso del agua).<br>
+	      En el control de calidad de los datos, la práctica común ha sido que cada grupo de investigación aplique criterios de reducción de errores a la 
+	      fuente original de datos. No obstante, las series de datos en que se ha realizado control de calidad minucioso  o se ha aplicado homogeneización, 
+	      pueden diferir de un analista/método/grupo de investigación a otro, haciendo necesario implementar un control de versiones de las series. <br>
+	      Ejemplificamos la aplicabilidad de los conceptos de CDMS, control de calidad, homogeneidad y control de versiones realizada en el caso de los 
+	      datos climáticos en la cuenca del <b> Río Conchos </b>y en índices de cambio climático del país.
+      </p>
+      <p style="text-align: justify;">* Miembro de REDESClim en activo</p>
+      <br><br>			
       </div>
       <br>
       <br>
     </div>
-    <div class="col-sm-3"></div>
+    <div class="col-sm-2"></div>
 	<div class="col-sm-9 text-justified">
-		<h3 style="text-align: left;">Resumen</h3>
-		<embed src="Resumen.pdf" width="600" height="750">
+		<div class="center-block"><a href="Resumen.pdf" download="ResumenVazquez_etal2017.pdf">
+			<img src="images/pdf-icon.png" width="100px" alt="" onclick="downPdf();"></a></div>
+		<!--<h3 style="text-align: left;">Resumen</h3>
+		<embed src="Resumen.pdf" width="600" height="750">-->
 	</div>
-	<br>
+	<br><br><br>	
 	<br>
 	<ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#jorge">Jorge</a></li>
