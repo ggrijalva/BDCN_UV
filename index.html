@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Theme Modifcado desde JBravo -->
+  <title>BDCN UV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+  <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th,
+    td {
+      padding: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="jumbotron text-center">
+    <h2>Base de Datos Climática con Control de Calidad</h2>
+    <p>Región de Estudio: <b>Cuenca Río Conchos</b></p>
+    <p>Ciencias Atmosféricas</p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="topnav" id="myTopnav">
+        <a href="index.html">Inicio</a>
+        <a href="index_Cons.html">Consulta</a>
+        <a href="index_Acerca.html">Acerca</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <h3>Universidad Veracruzana</h3>
+        <a href="">
+                    <img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" >
+                </a>
+      </div>
+      <div class="col-sm-9 text-justified">
+        <h3 style="text-align: left;">Justificación</h3>
+		<p style="text-align: justify;">La <strong>Línea de Generación y Aplicación del Conocimiento (LGAC)</strong>
+		sobre "Datos, Predicción y Servicios Climáticos" del Programa Educativo  de la Licenciatura en Ciencias Atmosféricas
+		de la Universidad Veracruzana, realiza actividades orientadas a mejorar el monitoreo, la disponibilidad  y la calidad
+		de los datos climáticos, en línea con el <strong>Plan Estratégico Nacional de REDESClim.</strong>.</p>
+      </div>
+      <br>
+      <br>
+    </div>
+    <div class="col-sm-3"></div>
+	<div class="col-sm-9 text-justified">
+		<h3 style="text-align: left;">Resumen</h3>
+		<embed src="Resumen.pdf" width="600" height="750">
+	</div>
+	<br>
+	<br>
+	<ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#jorge">Jorge</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="pingui" class="tab-pane fade in active">
+        <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
+        <h2>MC. Jorge Luis Vázquez Aguirre</h2>
+        <p>Coor. Vinculación en Lic. en Ciencias Atmosféricas</p>
+        </div>
+      </div>
+  </div>
+  <footer class="text-center" style="background:#c8c6c6">
+
+  </footer>
+
+</body>
+
+</html>

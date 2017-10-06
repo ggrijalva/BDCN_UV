@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Theme Modifcado desde JBravo -->
+  <title>BDCN UV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?language=es&key=AIzaSyCb4IPzE0sz1DiIfVGEt3zyZk0gctmwIMs"></script>
+  <script src="dygraph/jquery2.js" ></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel = "stylesheet" type = "text/css" href = "dygraph/DataTables/media/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src = "dygraph/DataTables/media/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="js/labels.js"></script>
+  <script type="text/javascript" src="js/Ruler.js"></script>
+  <script type="text/javascript" src="js/funciones.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "css/main.css"/>
+  
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th,
+    td {
+      padding: 1px;
+    }
+  </style>
+  <script type="text/javascript">
+	<!-- Consulta Cadenas direccion desde url
+	if (window != top)
+	top.location.href=location.href
+	var formData = location.search;
+	formData = formData.substring(1, formData.length);
+	formData = formData.replace("Est=", "");
+	var Clave = unescape(formData);
+   </script>
+</head>
+
+<body onload= "cargarmap()">
+  <div class="jumbotron text-center">
+    <h2>Base de Datos Climática con Control de Calidad</h2>
+    <p>Región de Estudio: <b>Cuenca Río Conchos</b></p>
+    <p>Ciencias Atmosféricas</p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="topnav" id="myTopnav">
+        <a href="index.html">Inicio</a>
+        <a href="index_Cons.html">Consulta</a>
+        <a href="index_Acerca.html">Acerca</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <h3>Universidad Veracruzana</h3>
+        <a href="">
+                    <img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" >
+                </a>
+      </div>
+      <div class="col-sm-8 text-justified">
+		<h3 style="text-align: left;">Gráfico Estación</h3>
+		<!-- Div del grafico de Dygraphs-->	
+		<div id="container2" style="float: left; width: 100%; height: 500px; margin: 0 auto; border: 2px solid #000; border-radius: 6px;">
+			<div id = "chart">
+			    <div style="margin-top: 100px; text-align: center" id="loading">
+			      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i> <h3>Cargando Información</h3>
+			    </div>       
+		   </div>
+				<b>Zoom:</b><br>
+				<button type="button" class="btn-success" id="mes"><b>1 Mes</b></button>
+				<button type="button" class="btn-success" id="6mes"><b>6 Meses</b></button>
+				<button type="button" class="btn-success" id="anio"><b>1 Año</b></button>
+				<button type="button" class="btn-success" id="5anio"><b>5 Años</b></button>
+				<button type="button" class="btn-success" id="full"><b>Todo</b></button>
+		</div>
+      </div>
+      </div>
+	  <div id='datos' onclick='loadCsv();'>VER EL ARCHIVO</div>
+      <br>
+      <br>
+    <br>
+	<br>
+	<ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#jorge">Jorge</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="pingui" class="tab-pane fade in active">
+        <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
+        <h2>MC. Jorge Luis Vázquez Aguirre</h2>
+        <p>Coor. Vinculación en Lic. en Ciencias Atmosféricas</p>
+        </div>
+     </div>
+  </div>
+
+  <!-- <iframe src="iframe_WRF_TEMP.html" style="border:none;" height="100%" width="100%" frameborder="0" allowfullscreen></iframe> -->
+  <!-- Footer -->
+  <footer class="text-center" style="background:#c8c6c6">
+
+  </footer>
+
+</body>
+
+</html>
