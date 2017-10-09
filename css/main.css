@@ -211,3 +211,48 @@ body {
 	margin: 0px auto;
 	float: left;
 }
+.center-block {  
+  display: block;  
+  margin-right: auto;  
+  margin-left: auto;  
+} 
+#chart {
+	width:  100%;
+	height: 350px;
+	border: 4px solid #666666; 
+	border-radius: 3px;
+}
+#chart2 {
+	width:  100%;
+	height: 350px;
+	border: 4px solid #666666; 
+	border-radius: 3px;
+}
+#chart.c3-line-data2 {
+  stroke-width: 5px;
+}
+
+.dygraph-legend {
+  background-color: #D9ECD9;
+  padding: 4px;
+  border: 2px solid #354649;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px #888;
+  width: 120px;
+  height:80px;
+  float: right !important;
+  font-size: 15px;
+  font-family: "Helvetica Neue",Arial,sans-serif,Helvetica;
+  line-height: 100%;
+}
+
+.dygraph-ylabel { padding: 4px; font-size: 20px; text-shadow: gray -2px 2px 2px; }
+.dygraph-y2label { padding: 4px; font-size:20px; text-shadow: gray -2px 2px 2px; }
+
+.hr-mio{
+	background:#333333;
+	height:5px;
+	border-radius:25px;
+	border: 2px solid;
+   margin:5px;
+}
