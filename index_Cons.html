@@ -46,7 +46,7 @@
 
   <div class="row">
     <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <div class="topnav" id="myTopnav">
         <a href="index.html">Inicio</a>
         <a href="index_Cons.html">Consulta</a>
@@ -70,40 +70,37 @@
 
   <div class="container">
     <div class="row">
+    	<div class="col-sm-1"></div>
       <div class="col-sm-2">
         <h3>Universidad Veracruzana</h3>
-        <a href="">
-                    <img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" >
-                </a>
+        		<a href=""><img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" ></a>
       </div>
-      <div class="col-sm-8 text-justified">
-		<h3 style="text-align: left;">Estaciones - Cuenca Río Conchos</h3>
-		<div style="float:right" class="btn btn-primary" onclick='addruler();'><img src="images/regla1.png" width="30px;" height="30px;"><b>Medir</b></div>
-		<div id="map3"></div> <!-- Div contenedor del mapa de seleccion con el id map3-->
-		<br><br>
-		<div style="float:right" id='datos' onclick='loadCsv();'><a>Ver Catalogo</a></div>
+      <div class="col-sm-9 text-justified">
+			<h3 style="text-align: left;">Estaciones - Cuenca Río Conchos</h3>
+			<div style="float:right" class="btn btn-primary" onclick='addruler();'><img src="images/regla1.png" width="30px;" height="30px;"><b>Medir</b></div>
+			<div id="map3"></div> <!-- Div contenedor del mapa de selección con el id map3-->
+			<br><br>
+			<div style="float:right" id='datos' onclick='loadCsv();'><a>Ver Catalogo</a></div>
       </div>
-      </div>
-	  <br>
-      <br>
-    <br>
-	<br>
-	<ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#jorge">Jorge</a></li>
-    </ul>
-    <div class="tab-content">
-      <div id="pingui" class="tab-pane fade in active">
-        <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
-        <h2>MC. Jorge Luis Vázquez Aguirre</h2>
-        <p>Coor. Vinculación en Lic. en Ciencias Atmosféricas</p>
-        </div>
-     </div>
-  </div>
-  <!-- Footer -->
-  <footer class="text-center" style="background:#c8c6c6">
-
-  </footer>
-
+    </div> <!-- Div Row-->
+	 <div class="row">
+ 		<div class="col-sm-1"></div>
+		<div class="col-sm-9">
+		 	<ul class="nav nav-tabs">
+		   	<li class="active"><a data-toggle="tab" href="#SC">SC</a></li>
+	    	</ul>
+	    	<div class="tab-content">
+		      <div id="pingui" class="tab-pane fade in active">
+		        <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
+		        <h2>Datos, predicción y Servicios Climáticos</h2>
+		        <p>Lic. en Ciencias Atmosféricas</p>
+		      </div>
+	      </div>
+	    </div> 
+	 </div> <!-- Div Row-->
+  </div>   <!-- Container-->
+<!-- Footer -->
+<footer class="text-center" style="background:#c8c6c6">
+</footer>
 </body>
-
 </html>
