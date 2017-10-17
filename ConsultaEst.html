@@ -12,7 +12,8 @@
   <link href="dygraph/dygraph.css" rel="stylesheet" type="text/css"> 
   <script type="text/javascript" src="js/funciones.js"></script>
   <script src="dygraph/dygraph.js" ></script>
-  <script src="dygraph/synchronizer.js" ></script>  
+  <script src="dygraph/synchronizer.js" ></script>-->
+  <!--<script src="https://github.com/danvk/dygraphs/blob/master/src/extras/synchronizer.js"></script>--> 
   <script src="js/smooth-plotter.js" ></script>
   <script src="dygraph/jquery2.js" ></script>
   <script src="bootstrap/js/bootstrap.js"></script>
@@ -84,7 +85,7 @@
       <h2>Revisión de Información</h2>
 		<!-- Div del grafico de Dygraphs-->
 	   <div>
-	   	<h3>Originales</h3>
+
 		   <div style="float:left"><button class="btn btn-primary"  onclick="descargaCsv0()"><b>Datos Originales</b></button></div>
 		   <div style="float:right"><button class="btn btn-primary" onclick="descargaCsv1()"><b>Datos Control Calidad</b></button></div>
 		   <br><br>
@@ -92,18 +93,19 @@
 		</div>	
 		<div id="container" style="float: left; width: 100%; margin: 0 auto; border: 2px solid #000; border-radius: 6px;">
 			<!-- Div del gráfico con los datos originales-->
-			<div id = "chart">
-			   <div style="margin-top: 100px; text-align: center" id="loading">
-			      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i> <h3>Cargando Información</h3>
-			   </div>       
-			</div>
 					<b>Zoom:</b><br>
 					<button type="button" class="btn-success" id="6mes"><b>6 Meses</b></button>
 					<button type="button" class="btn-success" id="anio"><b>1 Año</b></button>
 					<button type="button" class="btn-success" id="5anio"><b>5 Años</b></button>
 					<button type="button" class="btn-success" id="10anio"><b>10 Años</b></button>
 					<button type="button" class="btn-success" id="full"><b>Todo</b></button>
-			
+			<h3>Originales</h3>
+			<div id = "chart">
+			   <div style="margin-top: 100px; text-align: center" id="loading">
+			      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i> <h3>Cargando Información</h3>
+			   </div>       
+			</div>
+
 			<!-- Div del gráfico con los datos con control de calidad-->
 			<div><hr class="hr-mio"></div>
 			<div>
@@ -113,16 +115,22 @@
 				      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i> <h3>Cargando Información</h3>
 				    </div>       
 			   </div>
-					<b>Zoom:</b><br>
-					<button type="button" class="btn-success" id="6mes_"><b>6 Meses</b></button>
-					<button type="button" class="btn-success" id="anio_"><b>1 Año</b></button>
-					<button type="button" class="btn-success" id="5anio_"><b>5 Años</b></button>
-					<button type="button" class="btn-success" id="10anio_"><b>10 Años</b></button>
-					<button type="button" class="btn-success" id="full_"><b>Todo</b></button>
 			</div>
 		</div>
 		</div>
       </div>
+      <!-- Aquí va el pie de pagina -->
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div><hr class="hr-mio"></div>
+			   <div class="well">
+		       <h2>Datos Modificados</h2>
+		  		</div>
+		  		<p id="test" onclick="ComparaFiles()">Prueba</p>
+		  	</div>
+		</div>
+      <!-- Aquí va el pie de pagina -->
 		<div class="row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
@@ -143,11 +151,13 @@
 
 <script>
 /////////////////////////////////////////////////////////////////////////////////
-// Carga en la variable datos el csv 
+var gs = [];
+var blockRedraw = false;
+// Carga en la variable datos el csv
 leeCatalogoCsv(filecsv0, function(data) {
 	var datosFile0 = data;
 ///////////////////////////////////////////////////////////////////////////
-	g = new Dygraph(
+	gs.push(g = new Dygraph (
 	    document.getElementById("chart"), 	    // containing div
 	    // Aquí comienza la lace
 	    datosFile0,
@@ -176,39 +186,26 @@ leeCatalogoCsv(filecsv0, function(data) {
 	    	//////////////////////////////////////////////////////
 	      } // Cierre de drawcallback
          //////////////////////////////////////////////////////  
+      ) // Cierre Dygraph
 	); //  Cierra variable g encargada de generar el gráfico
 	/////////////////////////////////////////////
    //) // Cierre de opciones de creación del gráfico
    // LLamada de los datos   
     var w = g.xAxisRange(); 
     var dum = g.numRows();
+    // Se Carga el gráfico al entorno
+	 gs.push(g); 
    ////////////////////////////////////////////
    // Descarga de datos
 	var datos2 = "data:text/csv;Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile0;
-	encodedUri = encodeURI(datos2);
-
-	/////////////////////////////////////////////
-	var zoom = function(res) {
-     var w = g.xAxisRange();
-     new_range = [ w[1] - res * 1000, w[1] ];
-	   // Actualiza el zoom
-		  g.updateOptions({dateWindow: new_range});
-	  }
-	///////////////////////////////////////////
-   //document.getElementById('mes').onclick = function()   { zoom(86400 * 30); };
-   document.getElementById('6mes').onclick = function()  { zoom(86400 * 30 * 6); };
-   document.getElementById('anio').onclick = function()  { zoom(86400 * 30 * 12); };
-   document.getElementById('5anio').onclick = function() { zoom(86400 * 30 * 12 * 5); };
-   document.getElementById('10anio').onclick = function() { zoom(86400 * 30 * 12 * 10); };
-   document.getElementById('full').onclick = function()  {g.resetZoom(); };
-   
+	encodedUri = encodeURI(datos2);  
 }); // Cierra leeCatalogoCsv 
 /////////////////////////////////////////////////////////////////////////////////
 // Carga en la variable datos el csv 
 leeCatalogoCsv(filecsv1, function(data) {
-	var datosFile1 = data;
+	datosFile1 = data;
 ///////////////////////////////////////////////////////////////////////////
-	gg = new Dygraph(
+	gs.push(gg = new Dygraph (
 	    document.getElementById("chart2"), 	    // containing div
 	    // Aquí comienza la lace
 	    datosFile1,
@@ -237,33 +234,48 @@ leeCatalogoCsv(filecsv1, function(data) {
 	    	//////////////////////////////////////////////////////
 	      } // Cierre de drawcallback
          //////////////////////////////////////////////////////  
+     	) // Cierre Dygraph
 	); //  Cierra variable g encargada de generar el gráfico
 	/////////////////////////////////////////////
    //) // Cierre de opciones de creación del gráfico
    // LLamada de los datos   
     var wg = gg.xAxisRange(); 
     var dumg = gg.numRows();
+   // Se Carga el gráfico al entorno
+	 gs.push(gg); 
    ////////////////////////////////////////////
    // Descarga de datos
 	var datos3 = "data:text/csv;charset=utf-8,Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile1;
 	encodedUri1 = encodeURI(datos3);
-
-	/////////////////////////////////////////////
-	var zoomg = function(res) {
-     var w = gg.xAxisRange();
-     new_range = [ wg[1] - res * 1000, wg[1] ];
-	   // Actualiza el zoom
-		  gg.updateOptions({dateWindow: new_range});
-	  }
-	///////////////////////////////////////////
-   document.getElementById('6mes_').onclick = function()  { zoomg(86400 * 30 * 6); };
-   document.getElementById('anio_').onclick = function()  { zoomg(86400 * 30 * 12); };file:///usr/share/applications/bluefish.desktop
-   document.getElementById('5anio_').onclick = function() { zoomg(86400 * 30 * 12 * 5); };
-   document.getElementById('10anio_').onclick = function() { zoomg(86400 * 30 * 12 * 10); };
-   document.getElementById('full_').onclick = function()  {gg.resetZoom(); };
-   
+	// Sincronización de las gráficas ??
+	var sync = Dygraph.synchronize(gs, {
+   zoom: true,
+   selection: true,
+   range: false
+	});
 }); // Cierra leeCatalogoCsv 
-
+/////////////////////////////////////////////
+var zoom = function(res) {
+     var w  =  g.xAxisRange();
+     var wg = gg.xAxisRange();
+     if (res!="todo"){file:///usr/share/applications/bluefish.desktop
+	     new_range = [ w[1] - res * 1000, w[1] ];
+	     new_range2 = [ wg[1] - res * 1000, wg[1] ];
+		   // Actualiza el zoom
+			  g.updateOptions({dateWindow: new_range});
+			  gg.updateOptions({dateWindow: new_range2});
+		}
+		else{
+			g.resetZoom();
+			gg.resetZoom(); 
+		}		  
+} // Cierre de función de input
+////////////////////////////////////////////
+   document.getElementById('6mes').onclick = function()  { zoom(86400 * 30 * 6); };
+   document.getElementById('anio').onclick = function()  { zoom(86400 * 30 * 12); };
+   document.getElementById('5anio').onclick = function() { zoom(86400 * 30 * 12 * 5); };
+   document.getElementById('10anio').onclick = function() { zoom(86400 * 30 * 12 * 10); };
+   document.getElementById('full').onclick = function()  {zoom("todo");};
 //////////////////////////////////////////////////////////////////////
 // Función de descarga de la información 
 descargaCsv0 = function(){
@@ -282,7 +294,7 @@ descargaCsv1 = function(){
 	document.body.appendChild(link1);
 	link1.click();  
 };
-// Aplica el formato de DataTables
+
 </script>
 
 </body>
