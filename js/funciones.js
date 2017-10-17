@@ -170,7 +170,45 @@ function barChartPlotter(e) {
         bar_width, y_bottom - p.canvasy);
   }
 }
+//////////////////////////////////////////////////////////////////////
+// Tabla diferencias
+//var datos0 = leeCatalogoCsv(filecsv0, function(data) {return data});
+ComparaFiles = function(){
+// Se divide por filas del archivo
+	  var rowsFile0 = datosFile0.split(/\r\n|\r/);
+	  var rowsFile1 = datosFile1.split(/\r\n|\r/);
+	  // Definir Tabla a imprimir
+     var table = '<br><br><table>';
+     ///////////////////////////////////////////////////////////
+  	  for (var fila = 0; fila < rowsFile0.length; fila++) {
+    	if (fila === 0) {
+      	table += '<thead>';
+      	table += '<tr>';   }
+    	else {
+      	table += '<tr>';
+    	}
+    	// Dividir cada fila separado por comas
+	    var rowCellsFile0 = rowsFile0[fila].split(',');
+	    var rowCellsFile1 = rowsFile1[fila].split(',');
+	    // Recorrer celdas de cada archivo 	    
+	    for (var rowCell = 0; rowCell < rowCellsFile0.length; rowCell++) {
+	      if (singleRow != 0) {
+	      	if (rowCell == 0){
+		        table += '<td>';
+	   	     table += '<a href="ConsultaEst.html?Est='+ rowCells[rowCell] +'">' + rowCells[rowCell] + '</a>';
+	      	  table += '</td>';
+	      	}
+				if (rowCell > 1){
+		        table += '<td>';
+	   	     table += rowCells[rowCell];
+	      	  table += '</td>';
+	      	}
+      	}
+   	 }
+   }
+}
 /////////////////////////////////////////////////
+
 // Funcion de convertir Csv a arreglo javascript para Dygraphs
 /*var toArray = function(data) {
   var lines = data.split("\n");
