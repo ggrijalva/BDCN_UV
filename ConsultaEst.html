@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Theme Modifcado desde JBravo -->
+  <title>BDCN UV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "stylesheet" type = "text/css" href = "bootstrap/css/bootstrap.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="font/font-awesome/css/font-awesome.min.css">
+  <link href="dygraph/dygraph.css" rel="stylesheet" type="text/css"> 
+  <script type="text/javascript" src="js/funciones.js"></script>
+  <script src="dygraph/dygraph.js" ></script>
+  <script src="dygraph/synchronizer.js" ></script>-->
+  <!--<script src="https://github.com/danvk/dygraphs/blob/master/src/extras/synchronizer.js"></script>--> 
+  <script src="js/smooth-plotter.js" ></script>
+  <script src="dygraph/jquery2.js" ></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "css/main.css"/>
+  
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th,
+    td {
+      padding: 1px;
+    }
+  </style>
+  <script type="text/javascript">
+	<!-- Consulta Cadenas direccion desde url
+	if (window != top)
+	top.location.href=location.href
+	var formData = location.search;
+	formData = formData.substring(1, formData.length);
+	formData = formData.replace("Est=", "");
+	var Clave = unescape(formData);
+	var filecsv0 = "DatosE/" + Clave + "/" + Clave + "rclindcal.csv";
+	var filecsv1 = "DatosE/" + Clave + "/" + Clave + "rclindcalQC.csv";
+	//alert(filecsv0);
+	</script>
+</head>
+
+<body style="font-family:'Helvetica Neue',Arial,sans-serif,Helvetica">
+<!--<body>-->
+  <div class="jumbotron text-center">
+    <h2>Base de Datos Climática con Control de Calidad</h2>
+    <p>Región de Estudio: <b>Cuenca Río Conchos</b></p>
+    <p>Ciencias Atmosféricas</p>
+  </div>
+<div id="container2">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="topnav" id="myTopnav">
+        <a href="index.html">Inicio</a>
+        <a href="index_Cons.html">Consulta</a>
+        <a href="index_Acerca.html">Acerca</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script>
+
+
+   <div class="row">
+  	 <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h2>Revisión de Información</h2>
+		<!-- Div del grafico de Dygraphs-->
+	   <div>
+
+		   <div style="float:left"><button class="btn btn-primary"  onclick="descargaCsv0()"><b>Datos Originales</b></button></div>
+		   <div style="float:right"><button class="btn btn-primary" onclick="descargaCsv1()"><b>Datos Control Calidad</b></button></div>
+		   <br><br>
+		   <div><hr class="hr-mio"></div>
+		</div>	
+		<div id="container" style="float: left; width: 100%; margin: 0 auto; border: 2px solid #000; border-radius: 6px;">
+			<!-- Div del gráfico con los datos originales-->
+					<b>Zoom:</b><br>
+					<button type="button" class="btn-success" id="6mes"><b>6 Meses</b></button>
+					<button type="button" class="btn-success" id="anio"><b>1 Año</b></button>
+					<button type="button" class="btn-success" id="5anio"><b>5 Años</b></button>
+					<button type="button" class="btn-success" id="10anio"><b>10 Años</b></button>
+					<button type="button" class="btn-success" id="full"><b>Todo</b></button>
+			<h3>Originales</h3>
+			<div id = "chart">
+			   <div style="margin-top: 100px; text-align: center" id="loading">
+			      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i> <h3>Cargando Información</h3>
+			   </div>       
+			</div>
+
+			<!-- Div del gráfico con los datos con control de calidad-->
+			<div><hr class="hr-mio"></div>
+			<div>
+			   <h3 style="text-align: left;">Control de Calidad</h3>
+				<div id = "chart2">
+				    <div style="margin-top: 100px; text-align: center" id="loading">
+				      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i> <h3>Cargando Información</h3>
+				    </div>       
+			   </div>
+			</div>
+		</div>
+		</div>
+      </div>
+      <!-- Aquí va el pie de pagina -->
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div><hr class="hr-mio"></div>
+			   <div class="well">
+		       <h2>Datos Modificados</h2>
+		  		</div>
+		  		<p id="test" onclick="ComparaFiles()">Prueba</p>
+		  	</div>
+		</div>
+      <!-- Aquí va el pie de pagina -->
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+			    <ul class="nav nav-tabs">
+			      <li class="active"><a data-toggle="tab" href="#SC">SC</a></li>
+			    </ul>
+			    <div class="tab-content">
+			      <div id="pingui" class="tab-pane fade in active">
+			        <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
+			        <h2>Datos, predicción y Servicios Climáticos</h2>
+			        <p>Lic. en Ciencias Atmosféricas</p>
+			        </div>
+			    </div>
+	      	</div>
+	      </div>
+  </div> <!--Container-->
+
+
+<script>
+/////////////////////////////////////////////////////////////////////////////////
+var gs = [];
+var blockRedraw = false;
+// Carga en la variable datos el csv
+leeCatalogoCsv(filecsv0, function(data) {
+	var datosFile0 = data;
+///////////////////////////////////////////////////////////////////////////
+	gs.push(g = new Dygraph (
+	    document.getElementById("chart"), 	    // containing div
+	    // Aquí comienza la lace
+	    datosFile0,
+	    { labels: [ 'Fecha', 'Prec', 'Tmax', 'Tmin'],
+	    	series: {
+                "Prec": { plotter: barChartPlotter},
+                'Tmax': { plotter: smoothPlotter, axis: 'y2',strokeWidth: 2, color: "#FF3333" },
+                'Tmin': { plotter: smoothPlotter, axis: 'y2',strokeWidth: 2, color: "#006C9A" }
+                 },
+         // Rango de Valores
+         valueRange: [0, null], // Rango de Valores del eje X
+         // Circulo resaltado 
+         highlightCircleSize: 7,
+         labelsSeparateLines: true,  // Etiquetas en lineas separadas 
+
+         // Ajustar propiedades del eje
+         axes: {y2: {axisLabelFormatter: function(x){ return Math.round(x) + " °C"}},
+         		 y:  {axisLabelFormatter: function(x){ return Math.round(x * 100)/100 + " mm"}}       
+         		},
+         ylabel:  'Precipitación',
+         y2label: 'Temperatura',
+         legend: 'always', //always follow 
+	    	showRangeSelector: true,
+	    	gridLinePattern: [2,2],gridLineColor: '#ddd',gridLineWidth:1.5 ,
+	    	axisLabelWidth:  70
+	    	//////////////////////////////////////////////////////
+	      } // Cierre de drawcallback
+         //////////////////////////////////////////////////////  
+      ) // Cierre Dygraph
+	); //  Cierra variable g encargada de generar el gráfico
+	/////////////////////////////////////////////
+   //) // Cierre de opciones de creación del gráfico
+   // LLamada de los datos   
+    var w = g.xAxisRange(); 
+    var dum = g.numRows();
+    // Se Carga el gráfico al entorno
+	 gs.push(g); 
+   ////////////////////////////////////////////
+   // Descarga de datos
+	var datos2 = "data:text/csv;Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile0;
+	encodedUri = encodeURI(datos2);  
+}); // Cierra leeCatalogoCsv 
+/////////////////////////////////////////////////////////////////////////////////
+// Carga en la variable datos el csv 
+leeCatalogoCsv(filecsv1, function(data) {
+	datosFile1 = data;
+///////////////////////////////////////////////////////////////////////////
+	gs.push(gg = new Dygraph (
+	    document.getElementById("chart2"), 	    // containing div
+	    // Aquí comienza la lace
+	    datosFile1,
+	    { labels: [ 'Fecha', 'Prec', 'Tmax', 'Tmin'],
+	    	series: {
+                "Prec": { plotter: barChartPlotter},
+                'Tmax': { plotter: smoothPlotter, axis: 'y2',strokeWidth: 2, color: "#FF3333" },
+                'Tmin': { plotter: smoothPlotter, axis: 'y2',strokeWidth: 2, color: "#006C9A" }
+                 },
+         // Rango de Valores
+         valueRange: [0, null], // Rango de Valores del eje X
+         // Circulo resaltado 
+         highlightCircleSize: 7,
+         labelsSeparateLines: true,  // Etiquetas en lineas separadas 
+
+         // Ajustar propiedades del eje
+         axes: {y2: {axisLabelFormatter: function(x){ return Math.round(x) + " °C"}},
+         		 y:  {axisLabelFormatter: function(x){ return Math.round(x * 100)/100 + " mm"}}       
+         		},
+         ylabel:  'Precipitación',
+         y2label: 'Temperatura',
+         legend: 'always', //always follow 
+	    	showRangeSelector: true,
+	    	gridLinePattern: [2,2],gridLineColor: '#ddd',gridLineWidth:1.5 ,
+	    	axisLabelWidth:  70
+	    	//////////////////////////////////////////////////////
+	      } // Cierre de drawcallback
+         //////////////////////////////////////////////////////  
+     	) // Cierre Dygraph
+	); //  Cierra variable g encargada de generar el gráfico
+	/////////////////////////////////////////////
+   //) // Cierre de opciones de creación del gráfico
+   // LLamada de los datos   
+    var wg = gg.xAxisRange(); 
+    var dumg = gg.numRows();
+   // Se Carga el gráfico al entorno
+	 gs.push(gg); 
+   ////////////////////////////////////////////
+   // Descarga de datos
+	var datos3 = "data:text/csv;charset=utf-8,Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile1;
+	encodedUri1 = encodeURI(datos3);
+	// Sincronización de las gráficas ??
+	var sync = Dygraph.synchronize(gs, {
+   zoom: true,
+   selection: true,
+   range: false
+	});
+}); // Cierra leeCatalogoCsv 
+/////////////////////////////////////////////
+var zoom = function(res) {
+     var w  =  g.xAxisRange();
+     var wg = gg.xAxisRange();
+     if (res!="todo"){file:///usr/share/applications/bluefish.desktop
+	     new_range = [ w[1] - res * 1000, w[1] ];
+	     new_range2 = [ wg[1] - res * 1000, wg[1] ];
+		   // Actualiza el zoom
+			  g.updateOptions({dateWindow: new_range});
+			  gg.updateOptions({dateWindow: new_range2});
+		}
+		else{
+			g.resetZoom();
+			gg.resetZoom(); 
+		}		  
+} // Cierre de función de input
+////////////////////////////////////////////
+   document.getElementById('6mes').onclick = function()  { zoom(86400 * 30 * 6); };
+   document.getElementById('anio').onclick = function()  { zoom(86400 * 30 * 12); };
+   document.getElementById('5anio').onclick = function() { zoom(86400 * 30 * 12 * 5); };
+   document.getElementById('10anio').onclick = function() { zoom(86400 * 30 * 12 * 10); };
+   document.getElementById('full').onclick = function()  {zoom("todo");};
+//////////////////////////////////////////////////////////////////////
+// Función de descarga de la información 
+descargaCsv0 = function(){
+   var link = document.createElement('a');
+ 	link.href = encodedUri;
+	link.download = Clave + "_Originales.csv";;
+	document.body.appendChild(link);
+	link.click();  
+};
+//////////////////////////////////////////////////////////////////////
+// Función de descarga de la información 
+descargaCsv1 = function(){
+   var link1 = document.createElement('a');
+ 	link1.href = encodedUri1;
+	link1.download = Clave + "_ControlC.csv";;
+	document.body.appendChild(link1);
+	link1.click();  
+};
+
+</script>
+
+</body>
+
+</html>
