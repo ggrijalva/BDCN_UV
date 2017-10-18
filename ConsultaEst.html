@@ -125,7 +125,7 @@
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
 				<div><hr class="hr-mio"></div>
-			   <div class="well">
+			   <div class="well well-sm">
 		       <h2>Datos Modificados</h2>
 		  		</div>
 		  		<p id="test" onclick="ComparaFiles();">Click para ver datos</p>
@@ -293,8 +293,9 @@ descargaCsv1 = function(){
 
 };
 //////////////////////////////////////////////////////////////////////
-zoomfecha = function(fecha) {
-	var w  =  g.xAxisRange();
+zoomfecha = function(cadena) {
+	var w  =  cadena.split(';'); var fecha = w[0];	
+	var Vari = w[1]; var Val0 = w[2]; var Val1 = w[3];
 	var dum = g.numRows(); // En listar filas del gráfico 
 	for ( var i = 0; i < (dum); i++){
 		var auxDate = new Date(g.getValue(i, 0));
@@ -309,8 +310,21 @@ zoomfecha = function(fecha) {
 	g.updateOptions({dateWindow: new_range}); // zoom del nuevo rango 
 	gg.updateOptions({dateWindow: new_range});
 	window.scrollTo(0,450); // subir para ver las gráficas
-	//window.scrollMaxY;
-}; // Cierre de función de input
+	// Genera anotación para resaltar la posición
+	var annotations = [];
+	annotations.push( {
+          series: Vari,
+          x: fecha,
+          shortText: Vari + ": " + Val0 + " x " + Val1,
+          text: fecha,
+          tickHeight: 15, 
+          width: 100,
+          height:20,
+          cssClass: 'annotationsX',  
+        });
+	 g.setAnnotations(annotations);
+	 gg.setAnnotations(annotations);
+}; // Cierre de función de zoomfecha
 </script>
 </body>
 </html>
