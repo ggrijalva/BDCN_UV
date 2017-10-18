@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Theme Modifcado desde JBravo -->
+  <!-- Theme Modificado desde JBravo -->
   <title>BDCN UV</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
   <link href="dygraph/dygraph.css" rel="stylesheet" type="text/css"> 
   <script type="text/javascript" src="js/funciones.js"></script>
   <script src="dygraph/dygraph.js" ></script>
-  <script src="dygraph/synchronizer.js" ></script>-->
+  <script src="dygraph/synchronizer.js" ></script>
   <!--<script src="https://github.com/danvk/dygraphs/blob/master/src/extras/synchronizer.js"></script>--> 
   <script src="js/smooth-plotter.js" ></script>
   <script src="dygraph/jquery2.js" ></script>
@@ -94,6 +94,7 @@
 		<div id="container" style="float: left; width: 100%; margin: 0 auto; border: 2px solid #000; border-radius: 6px;">
 			<!-- Div del gráfico con los datos originales-->
 					<b>Zoom:</b><br>
+					<button type="button" class="btn-success" id="1mes"><b>1 Mes</b></button>
 					<button type="button" class="btn-success" id="6mes"><b>6 Meses</b></button>
 					<button type="button" class="btn-success" id="anio"><b>1 Año</b></button>
 					<button type="button" class="btn-success" id="5anio"><b>5 Años</b></button>
@@ -127,7 +128,7 @@
 			   <div class="well">
 		       <h2>Datos Modificados</h2>
 		  		</div>
-		  		<p id="test" onclick="ComparaFiles()">Prueba</p>
+		  		<p id="test" onclick="ComparaFiles();">Click para ver datos</p>
 		  	</div>
 		</div>
       <!-- Aquí va el pie de pagina -->
@@ -155,7 +156,7 @@ var gs = [];
 var blockRedraw = false;
 // Carga en la variable datos el csv
 leeCatalogoCsv(filecsv0, function(data) {
-	var datosFile0 = data;
+	datosFile0 = data;
 ///////////////////////////////////////////////////////////////////////////
 	gs.push(g = new Dygraph (
 	    document.getElementById("chart"), 	    // containing div
@@ -193,8 +194,6 @@ leeCatalogoCsv(filecsv0, function(data) {
    // LLamada de los datos   
     var w = g.xAxisRange(); 
     var dum = g.numRows();
-    // Se Carga el gráfico al entorno
-	 gs.push(g); 
    ////////////////////////////////////////////
    // Descarga de datos
 	var datos2 = "data:text/csv;Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile0;
@@ -241,12 +240,11 @@ leeCatalogoCsv(filecsv1, function(data) {
    // LLamada de los datos   
     var wg = gg.xAxisRange(); 
     var dumg = gg.numRows();
-   // Se Carga el gráfico al entorno
-	 gs.push(gg); 
    ////////////////////////////////////////////
    // Descarga de datos
 	var datos3 = "data:text/csv;charset=utf-8,Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile1;
 	encodedUri1 = encodeURI(datos3);
+	////////////////////////////////////////////
 	// Sincronización de las gráficas ??
 	var sync = Dygraph.synchronize(gs, {
    zoom: true,
@@ -257,13 +255,11 @@ leeCatalogoCsv(filecsv1, function(data) {
 /////////////////////////////////////////////
 var zoom = function(res) {
      var w  =  g.xAxisRange();
-     var wg = gg.xAxisRange();
      if (res!="todo"){file:///usr/share/applications/bluefish.desktop
 	     new_range = [ w[1] - res * 1000, w[1] ];
-	     new_range2 = [ wg[1] - res * 1000, wg[1] ];
-		   // Actualiza el zoom
+	     // Actualiza el zoom
 			  g.updateOptions({dateWindow: new_range});
-			  gg.updateOptions({dateWindow: new_range2});
+			  gg.updateOptions({dateWindow: new_range});
 		}
 		else{
 			g.resetZoom();
@@ -271,11 +267,12 @@ var zoom = function(res) {
 		}		  
 } // Cierre de función de input
 ////////////////////////////////////////////
-   document.getElementById('6mes').onclick = function()  { zoom(86400 * 30 * 6); };
-   document.getElementById('anio').onclick = function()  { zoom(86400 * 30 * 12); };
+	document.getElementById('1mes').onclick =  function() { zoom(86400 * 30 * 1); };
+   document.getElementById('6mes').onclick =  function() { zoom(86400 * 30 * 6); };
+   document.getElementById('anio').onclick =  function() { zoom(86400 * 30 * 12); };
    document.getElementById('5anio').onclick = function() { zoom(86400 * 30 * 12 * 5); };
-   document.getElementById('10anio').onclick = function() { zoom(86400 * 30 * 12 * 10); };
-   document.getElementById('full').onclick = function()  {zoom("todo");};
+   document.getElementById('10anio').onclick =function() { zoom(86400 * 30 * 12 * 10); };
+   document.getElementById('full').onclick =  function() { zoom("todo");};
 //////////////////////////////////////////////////////////////////////
 // Función de descarga de la información 
 descargaCsv0 = function(){
@@ -293,10 +290,27 @@ descargaCsv1 = function(){
 	link1.download = Clave + "_ControlC.csv";;
 	document.body.appendChild(link1);
 	link1.click();  
+
 };
-
+//////////////////////////////////////////////////////////////////////
+zoomfecha = function(fecha) {
+	var w  =  g.xAxisRange();
+	var dum = g.numRows(); // En listar filas del gráfico 
+	for ( var i = 0; i < (dum); i++){
+		var auxDate = new Date(g.getValue(i, 0));
+		var fechatest = auxDate.yyyymmdd(); // Se define fecha para comparación
+		if (fechatest == fecha){var FechaB = auxDate; break;}
+	} // Cierre de búsqueda de fecha deseada 
+	// Definir el nuevo rango
+	  qcena = 86400 * 15 * 1 * 1000;
+	  t0 = (FechaB - qcena); t1 = (t0 + 2*qcena);  
+	  new_range = [t0,t1];
+	// Actualiza el zoom
+	g.updateOptions({dateWindow: new_range}); // zoom del nuevo rango 
+	gg.updateOptions({dateWindow: new_range});
+	window.scrollTo(0,450); // subir para ver las gráficas
+	//window.scrollMaxY;
+}; // Cierre de función de input
 </script>
-
 </body>
-
 </html>
