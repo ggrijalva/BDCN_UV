@@ -201,8 +201,8 @@ ComparaFiles = function(){
 	    // Recorrer celdas de cada archivo 	    
 	    for (var rowCell = 0; rowCell < rowCellsFile0.length; rowCell++) {
 	        	if (rowCell > 0){
-	        	  Val0 = rowCellsFile0[rowCell]; if (Val0 === ''){Val0 = -99.9;}
-	        	  Val1 = rowCellsFile1[rowCell]; if (Val1 === ''){Val1 = -99.9;}
+	        	  Val0 = rowCellsFile0[rowCell]; if (Val0 === ''){Val0 = 'ND';}
+	        	  Val1 = rowCellsFile1[rowCell]; if (Val1 === ''){Val1 = 'ND';}
 	        	  var Vari = "";
 	        	  if (Val0 != Val1){
 	        	  	  switch(rowCell) { 
@@ -211,7 +211,7 @@ ComparaFiles = function(){
 	        	  	  	case 3: Vari = 'Tmin'; break;
 	        	  	  } // Cierre switch y case
 			        table += '<tr><td><b>' + Cons + '</b></td>'; Cons++;		// Consecutivo	        	  	  
-			        table += "<td><input onclick='zoomfecha(this.value);' value='" + rowCellsFile0[0] + "' type='button'></input></td>"; 	// Fecha
+			        table += "<td><button onclick='zoomfecha(this.value);' value='" + rowCellsFile0[0] + ";" + Vari + ";" + Val0 + ";" + Val1 +"'>" + rowCellsFile0[0] + "</button></td>"; 	// Fecha
 			        table += '<td><b>' + Vari + '</b></td>'; 				// Variable
 		   	     table += '<td>' + Val0 + '</td>'; 						// Antes
 		   	     table += '<td>' + Val1 + '</td>'; 						// Después
