@@ -128,7 +128,7 @@
 			   <div class="well well-sm">
 		       <h2>Datos Modificados</h2>
 		  		</div>
-		  		<p id="test" onclick="ComparaFiles();">Click para ver datos</p>
+		  		<div id="test" onclick="ComparaFiles();"><h3><a>Click para ver datos</a></h3></div>
 		  	</div>
 		</div>
       <!-- Aquí va el pie de pagina -->
@@ -141,7 +141,7 @@
 			    <div class="tab-content">
 			      <div id="pingui" class="tab-pane fade in active">
 			        <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
-			        <h2>Datos, predicción y Servicios Climáticos</h2>
+			        <h2>Datos, Predicción y Servicios Climáticos</h2>
 			        <p>Lic. en Ciencias Atmosféricas</p>
 			        </div>
 			    </div>
@@ -155,7 +155,7 @@
 var gs = [];
 var blockRedraw = false;
 // Carga en la variable datos el csv
-leeCatalogoCsv(filecsv0, function(data) {
+datos0 = leeCatalogoCsv(filecsv0, function(data) {
 	datosFile0 = data;
 ///////////////////////////////////////////////////////////////////////////
 	gs.push(g = new Dygraph (
@@ -198,10 +198,11 @@ leeCatalogoCsv(filecsv0, function(data) {
    // Descarga de datos
 	var datos2 = "data:text/csv;Fecha,Prec(mm),Tmx(°C), Tmn(°C)\n" + datosFile0;
 	encodedUri = encodeURI(datos2);  
-}); // Cierra leeCatalogoCsv 
+return (datosFile0);}
+); // Cierra leeCatalogoCsv 
 /////////////////////////////////////////////////////////////////////////////////
 // Carga en la variable datos el csv 
-leeCatalogoCsv(filecsv1, function(data) {
+datos1 = leeCatalogoCsv(filecsv1, function(data) {
 	datosFile1 = data;
 ///////////////////////////////////////////////////////////////////////////
 	gs.push(gg = new Dygraph (
@@ -251,6 +252,8 @@ leeCatalogoCsv(filecsv1, function(data) {
    selection: true,
    range: false
 	});
+//alert(datosFile1);
+return(datosFile1);
 }); // Cierra leeCatalogoCsv 
 /////////////////////////////////////////////
 var zoom = function(res) {
@@ -315,7 +318,7 @@ zoomfecha = function(cadena) {
 	annotations.push( {
           series: Vari,
           x: fecha,
-          shortText: Vari + ": " + Val0 + " x " + Val1,
+          shortText: Vari + ": " + Val0 + " - " + Val1,
           text: fecha,
           tickHeight: 15, 
           width: 100,
@@ -325,6 +328,8 @@ zoomfecha = function(cadena) {
 	 g.setAnnotations(annotations);
 	 gg.setAnnotations(annotations);
 }; // Cierre de función de zoomfecha
+// Definir función que carga los datos 
+
 </script>
 </body>
 </html>
