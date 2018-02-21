@@ -10,7 +10,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <!--<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">-->
+  <link rel="stylesheet" href="font/font-awesome/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
   <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
@@ -41,7 +42,7 @@
 
   <div class="row">
     <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <div class="topnav" id="myTopnav">
         <a href="index.html">Inicio</a>
         <a href="index_Cons.html">Consulta</a>
@@ -65,19 +66,21 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
+		<div class="col-sm-1"></div>
+      <div class="col-sm-2">
         <h3>Universidad Veracruzana</h3>
-        <a href="">
-                    <img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" >
-                </a>
+        		<a href=""><img src="images/LIS-UV-COLOR.jpg" height="100px" alt="SPCVer" style="float:left;" ></a>
       </div>
       <div class="col-sm-9 text-justified">
         <h3 style="text-align: center;">Justificación</h3>
         <p style="text-align: justify;">La <strong>Línea de Generación y Aplicación del Conocimiento (LGAC)</strong> sobre "Datos, Predicción y Servicios Climáticos" del Programa Educativo  de la Licenciatura en Ciencias Atmosféricas  de la Universidad Veracruzana, realiza actividades orientadas a mejorar el monitoreo, la disponibilidad  y la calidad de los datos climáticos, en línea con el <strong>Plan Estratégico Nacional de REDESClim.</strong>.</p>
+        <h3>Enlaces</h3>
+        <p><a href="http://www.wmo.int/pages/prog/wcp/ccl/opace/documents/FinalReport-ET-CDMS_Nov2014.pdf" target="_blank">Reporte de Sistemas Manejadores de Bases de Datos Climáticas de la OMM</a></p>
+        <p><a href="http://www.redesclim.org.mx/" target="_blank">REDESClim</a></p>
       </div>
-      <br>
-      <br>
+
     </div>
+    <h3 class="text-center">¿A quién puedes dirigirte?</h3>
     <h3 class="text-center">Información de Contacto</h3>
     <div class="row">
       <div class="col-md-3">
@@ -91,16 +94,15 @@
       </div>
     </div>
     <br>
-    <h3 class="text-center">¿A quién puedes dirigirte?</h3>
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#jorge">Jorge</a></li>
+      <li class="active"><a data-toggle="tab" href="#SC">SC</a></li>
     </ul>
 
     <div class="tab-content">
       <div id="pingui" class="tab-pane fade in active">
         <img id="pc" src="images/logo_instru.jpg" alt="Coord" style="float:left;width:80px;">
-        <h2>MC. Jorge Luis Vázquez Aguirre</h2>
-        <p>Coor. Vinculación en Lic. en Ciencias Atmosféricas</p>
+        <h2>Datos, Predicción y Servicios Climáticos</h2>
+        <p>Lic. en Ciencias Atmosféricas</p>
         </div>
       </div>
   </div>
@@ -120,26 +122,7 @@
       .bindPopup("<b>Facultad de Instrumentación Electrónica, Universidad Veracruzana</b><br> Zona Universitaria<br>Xalapa-Enríquez, Veracruz<br>C.P. 91090<br>")       
       .openPopup();
   </script>
-  <!-- <iframe src="iframe_WRF_TEMP.html" style="border:none;" height="100%" width="100%" frameborder="0" allowfullscreen></iframe> -->
-  <!-- Footer -->
   <footer class="text-center" style="background:#c8c6c6">
-   <!-- 
-    <br>
-    <p>¡Síguenos en nuestras redes sociales!</p>
-    <br>
-    <div align="center">
-      <a target="_blank" href="https://www.facebook.com/cepm.civil">
-                <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="facebook" style="width:25px;height:25px">
-            </a>
-      <a target="_blank" href="https://twitter.com/spcver">
-                <img src="https://abs.twimg.com/favicons/favicon.ico" alt="twitter" style="width:25px;height:25px;">
-            </a>
-      <a target="_blank" href="http://meteorologiaspcver.blogspot.mx/">
-                <img src="https://www.blogger.com/about/favicon/apple-touch-icon-57x57.png" alt="blogger" style="width:25px;height:25px;">
-            </a>
-    </div>
-    <br>
-    -->
   </footer>
 
 </body>
